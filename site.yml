@@ -27,10 +27,10 @@
    #    name: maven
     #    state: started
 
-    - name: Ensure git service is started
-      service:
-        name: git
-        state: started
+    #- name: Ensure git service is started
+    #  service:
+    #    name: git
+    #    state: started
 
     - name: Ensure git clone is present
       git:

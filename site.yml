@@ -22,10 +22,10 @@
         name: git
         state: present
 
-    - name: Ensure maven service is started
-      service:
-        name: maven
-        state: started
+   # - name: Ensure maven service is started
+    #  service:
+   #    name: maven
+    #    state: started
 
     - name: Ensure git service is started
       service:

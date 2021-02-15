@@ -6,8 +6,7 @@
   tasks:
     - name: Ensure apt update is actually
       apt:
-        name: update
-        state: present
+        update_cache: yes
 
     - name: Ensure jdk package is present
       apt:
@@ -57,8 +56,7 @@
   tasks:
     - name: Ensure apt update is actually
       apt:
-        name: update
-        state: present
+        update_cache: yes
 
     - name: Ensure tomcat package is present
       apt:

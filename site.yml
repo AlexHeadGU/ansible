@@ -1,0 +1,75 @@
+---
+- name: install/assembly maven
+  hosts: assembly
+  become: yes
+
+  tasks:
+    - name: Ensure apt update is actually
+      apt:
+        name: update
+        state: present
+
+    - name: Ensure jdk package is present
+      apt:
+        name: default-jdk
+
+    - name: Ensure maven package is present
+      apt:
+        name: maven
+        state: present
+
+    - name: Ensure git package is present
+      apt:
+        name: git
+        state: present
+
+    - name: Ensure maven service is started
+      service:
+        name: maven
+        state: started
+
+    - name: Ensure git service is started
+      service:
+        name: git
+        state: started
+
+    - name: Ensure git clone is present
+      git:
+        repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+        dest: /home/ansible/boxfuse-sample-java-war-hello.git/
+
+    - name: Build project
+      shell: mvn package
+        chdir: /home/ansible/boxfuse-sample-java-war-hello.git/
+
+    - name: Store file into /home/fetched/
+      fetch:
+        src: /home/ansible/boxfuse-sample-java-war-hello.git/target/
+        dest: /home/fetched/
+
+
+
+- name: install tomcat
+  hosts: production
+  become: yes
+
+  tasks:
+    - name: Ensure apt update is actually
+      apt:
+        name: update
+        state: present
+
+    - name: Ensure tomcat package is present
+      apt:
+        name: tomcat9
+        state: present
+
+    - name: Ensure tomcat9 service is started
+      services:
+        name: tomcat9
+        state: started
+
+    - name: Store file into /var/lib/tomcat9/webapps/
+      copy:
+        src: /home/fetched/hello-1.0.war
+        dest: /var/lib/tomcat9/webapps/hello-1.0.war

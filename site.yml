@@ -40,6 +40,7 @@
 
     - name: Build project
       shell: mvn package
+      args:
         chdir: /home/ansible/boxfuse-sample-java-war-hello.git/
 
     - name: Store file into /home/fetched/

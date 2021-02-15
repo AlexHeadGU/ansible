@@ -44,7 +44,7 @@
 
     - name: Store file into /home/fetched/
       fetch:
-        src: /home/ansible/boxfuse-sample-java-war-hello.git/target/
+        src: /home/ansible/boxfuse-sample-java-war-hello.git/target/hello-1.0.war
         dest: /home/fetched/
 
 

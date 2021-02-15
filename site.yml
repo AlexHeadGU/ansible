@@ -70,5 +70,5 @@
 
     - name: Store file into /var/lib/tomcat9/webapps/
       copy:
-        src: /home/fetched/hello-1.0.war
+        src: /home/fetched/34.71.27.154/home/ansible/boxfuse-sample-java-war-hello.git/target/hello-1.0.war
         dest: /var/lib/tomcat9/webapps/hello-1.0.war
